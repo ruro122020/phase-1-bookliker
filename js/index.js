@@ -5,17 +5,22 @@ document.addEventListener("DOMContentLoaded", function () {
     function loopThroughBooks() {
         booksList.forEach(book => renderBook(book))
     }
-    /***Events */
-    function liEventListener(li) {
-        li.addEventListener('click', (e) => {
-            renderBookInfo(li)
-        })
-    }
     function clearDOM(parentContainer) {
         const parentChildren = Array.from(parentContainer.children)
         if(parentChildren.length){
             parentChildren.forEach(element => element.remove())
         }
+    }
+    /***Events */
+    function liEventListener(li) {
+        li.addEventListener('click', () => {
+            renderBookInfo(li)
+        })
+    }
+    function btnEventListener(btn){
+        btn.addEventListener('click', ()=>{
+            
+        })
     }
     /***Render to DOM */
     function renderBook(book) {
@@ -48,11 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const author = document.createElement('h2')
         const description = document.createElement('p')
         const likeContainer = document.createElement('ul')
+        const likeBtn = document.createElement('button')
         //add texts
         title.textContent = book.title
         subTitle.textContent = book.subTitle
         author.textContent = book.author
         description.textContent = book.description
+        likeBtn.textContent = 'LIKE'
         //add attributes
         img.src = book.img_url
         //append elements to DOM
@@ -63,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bookInfoContainer.appendChild(description)
         likesLiArray.forEach(element => likeContainer.appendChild(element))
         bookInfoContainer.appendChild(likeContainer)
+        btnEventListener(likeBtn)
     }
     /***Fetch Request */
     function getBooks() {
